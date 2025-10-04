@@ -160,7 +160,7 @@ impl Simulation {
             new_sharks.push(new_shark);
         }
 
-        dbg!(&self);
+        // dbg!(&self);
 
         self.sharks = new_sharks;
     }

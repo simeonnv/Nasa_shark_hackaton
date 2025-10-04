@@ -35,7 +35,7 @@ pub const SHAPEFILE_PATH: &'static str = "land/ne_110m_land.shp";
 async fn main() -> Result<()> {
     let mut rng = rand::rng();
     let land_polygons = load_land_polygons(SHAPEFILE_PATH).unwrap();
-    let simulation = Arc::new(RwLock::new(Simulation::new(10, &mut rng, &land_polygons)));
+    let simulation = Arc::new(RwLock::new(Simulation::new(1, &mut rng, &land_polygons)));
     // dbg!(simulation);
 
     tokio::spawn(rerender_loop(simulation.clone()));
@@ -68,6 +68,8 @@ async fn handle_connection(
             let sim = simulation.read().await;
             simulation_json = serde_json::to_string(sim.deref()).unwrap();
         }
+
+        // dbg!(&simulation_json);
 
         write.send(Message::Text(simulation_json.into())).await?;
     }
