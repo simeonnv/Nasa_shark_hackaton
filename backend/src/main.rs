@@ -92,15 +92,15 @@ async fn rerender_loop(
             let mut simulation = simulation.write().await;
             simulation.step(
                 1.0 / TPS as f64, // dt
-                10.0,             // perception_radius
-                2.0,              // separation_distance
-                0.01,             // cohesion_strength
-                0.1,              // separation_strength
-                0.04,             // alignment_strength
+                10.0,
+                2.0,
+                0.01,
+                0.1,
+                0.04,
                 &land_polygons,
                 map_bounds,
-                3.,
-                3.0,
+                5.,
+                10.,
                 0.1,
                 10.0,
             );
